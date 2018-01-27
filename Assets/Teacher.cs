@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Teacher : MonoBehaviour {
-
+    //Animator
+    Animator anim;
     //Look Behind
     private bool isLooking      = false;
     private bool noteMoving     = false;
@@ -18,6 +19,7 @@ public class Teacher : MonoBehaviour {
     // Use this for initialization
     void Start() {
         InvokeRepeating("IncreaseSound", increaseSecondRate, increaseSecondRate);
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,14 +40,13 @@ public class Teacher : MonoBehaviour {
     void StopLookingBehind() {
         isLooking = false;
         soundLevel = 0;
-        this.GetComponent<SpriteRenderer>().color = Color.white;
-        print("StopLooking");
+        anim.SetBool("isLooking", false);
     }
 
     //Function call when the Teacher look behind
     void LookBehind() {
         print("isLooking");
-        this.GetComponent<SpriteRenderer>().color = Color.red;
+        anim.SetBool("isLooking", true);
         if (noteMoving) {
             print("Game Over");
         }
