@@ -7,7 +7,7 @@ public class Teacher : MonoBehaviour {
     Animator anim;
     //Look Behind
     private bool isLooking      = false;
-    private bool noteMoving     = false;
+    public bool noteMoving     = false;
     public int   timeLookBehind = 5;
 
     //Sound Level
@@ -29,6 +29,10 @@ public class Teacher : MonoBehaviour {
             Invoke("StopLookingBehind", 5);
         }
         if (isLooking) LookBehind();
+        anim.SetFloat("angerLevel", soundLevel);
+
+        FMODUnity.StudioParameterTrigger obj = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FMODUnity.StudioParameterTrigger>();
+        obj.Emitters[0].Target.SetParameter("AngerLevel", soundLevel);
     }
 
     //Increase the Sound Level by increaseNumber
@@ -48,7 +52,7 @@ public class Teacher : MonoBehaviour {
         print("isLooking");
         anim.SetBool("isLooking", true);
         if (noteMoving) {
-            print("Game Over");
+            GameObject.FindGameObjectWithTag("Player").GetComponent<StudentBehaviour>().fail = true;
         }
     }
 }

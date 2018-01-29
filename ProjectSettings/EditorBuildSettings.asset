@@ -4,4 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: eb3eff9cbf3232343b18d61536add9dc
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: e041fce31f8eb0d43ac3b2d0e877899d
+  - enabled: 1
+    path: Assets/Scenes/PassTheNote.unity
+    guid: e8d2b1e593ed98d498e95527d66c38ab
+  - enabled: 1
+    path: Assets/Scenes/PassTheNote2.unity
+    guid: c121d4e2b15903f40a1311f022a82629
+  - enabled: 1
+    path: Assets/Scenes/PassTheNote3.unity
+    guid: 19778145967e7484da15468931224799

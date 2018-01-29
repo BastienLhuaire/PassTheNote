@@ -10,14 +10,21 @@ public class GameManager : MonoBehaviour {
     bool keyUp;
     bool keyDown;
 
+    GameObject player;
+
+    float moveSpeed = 0.5f;
+
     GameObject[] list;
     List<List<GameObject>> sortedDesks = new List<List<GameObject>>();
     List<GameObject> currentObjectList = new List<GameObject>();
+
 
     // Use this for initialization
     void Start () {
         list = GameObject.FindGameObjectsWithTag("Desk");
         initDesks();
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 	
 	// Update is called once per frame
@@ -27,16 +34,43 @@ public class GameManager : MonoBehaviour {
         keyUp = Input.GetKeyDown(KeyCode.UpArrow);
         keyDown = Input.GetKeyDown(KeyCode.DownArrow);
 
-        if (keyDown) moveDown();
-        if (keyUp) moveUp();
-        if (keyLeft) moveLeft();
-        if (keyRight) moveRight();
+        if (keyDown && player.GetComponent<StudentBehaviour>().deskOnTheBottom != null && !player.GetComponent<StudentBehaviour>().fail) {
+            if (player.GetComponent<StudentBehaviour>().badGuy)
+                player.GetComponent<Animator>().SetTrigger("passBack");
+            else
+                player.GetComponent<Animator>().SetTrigger("passFront");
+            GameObject.Find("Teacher").GetComponent<Teacher>().noteMoving = true;
+            Invoke("moveDown", moveSpeed);
+        }
+        else if (keyUp && player.GetComponent<StudentBehaviour>().deskOnTheTop != null && !player.GetComponent<StudentBehaviour>().fail) {
+            if (player.GetComponent<StudentBehaviour>().badGuy)
+                player.GetComponent<Animator>().SetTrigger("passFront");
+            else
+                player.GetComponent<Animator>().SetTrigger("passBack");
+            GameObject.Find("Teacher").GetComponent<Teacher>().noteMoving = true;
+            Invoke("moveUp", moveSpeed);
+        }
+        else if (keyLeft && player.GetComponent<StudentBehaviour>().deskOnTheLeft != null && !player.GetComponent<StudentBehaviour>().fail) {
+            if (player.GetComponent<StudentBehaviour>().badGuy)
+                player.GetComponent<Animator>().SetTrigger("passRight");
+            else
+                player.GetComponent<Animator>().SetTrigger("passLeft");
+            GameObject.Find("Teacher").GetComponent<Teacher>().noteMoving = true;
+            Invoke("moveLeft", moveSpeed);
+        }
+        else if (keyRight && player.GetComponent<StudentBehaviour>().deskOnTheRight != null && !player.GetComponent<StudentBehaviour>().fail) {
+            if (player.GetComponent<StudentBehaviour>().badGuy)
+                player.GetComponent<Animator>().SetTrigger("passLeft");
+            else
+                player.GetComponent<Animator>().SetTrigger("passRight");
+            GameObject.Find("Teacher").GetComponent<Teacher>().noteMoving = true;
+            Invoke("moveRight", moveSpeed);
+        };
     }
 
     void initDesks()
     {
         for (int i = 0; i < 5; i++) sortedDesks.Add(new List<GameObject>());
-
 
         foreach (GameObject lObject in list)
         {
@@ -51,55 +85,38 @@ public class GameManager : MonoBehaviour {
         {
             sortedDesks[i] = sortedDesks[i].OrderBy(t => t.transform.position.y).ToList();
         }
-
     }
 
     void moveDown()
     {
-        foreach(GameObject lObject in list)
-        {
-            if (lObject.GetComponent<StudentBehaviour>().player)
-            {
-                lObject.GetComponent<StudentBehaviour>().goDown();
-                return;
-            }
-        }
+        if (player.GetComponent<StudentBehaviour>().badGuy) player.GetComponent<StudentBehaviour>().goUp();
+        else if (player.GetComponent<StudentBehaviour>().goodGuy) player.GetComponent<StudentBehaviour>().goDown();
+        GameObject.Find("Teacher").GetComponent<Teacher>().noteMoving = false;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void moveUp()
     {
-        foreach (GameObject lObject in list)
-        {
-            if (lObject.GetComponent<StudentBehaviour>().player)
-            {
-                lObject.GetComponent<StudentBehaviour>().goUp();
-                return;
-            }
-        }
+        if (player.GetComponent<StudentBehaviour>().badGuy) player.GetComponent<StudentBehaviour>().goDown();
+        else if (player.GetComponent<StudentBehaviour>().goodGuy) player.GetComponent<StudentBehaviour>().goUp();
+        GameObject.Find("Teacher").GetComponent<Teacher>().noteMoving = false;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void moveLeft()
     {
-        foreach (GameObject lObject in list)
-        {
-            if (lObject.GetComponent<StudentBehaviour>().player)
-            {
-                lObject.GetComponent<StudentBehaviour>().goLeft();
-                return;
-            }
-        }
+        if (player.GetComponent<StudentBehaviour>().badGuy) player.GetComponent<StudentBehaviour>().goRight();
+        else if (player.GetComponent<StudentBehaviour>().goodGuy) player.GetComponent<StudentBehaviour>().goLeft();
+        GameObject.Find("Teacher").GetComponent<Teacher>().noteMoving = false;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void moveRight()
-    {
-        foreach (GameObject lObject in list)
-        {
-            if (lObject.GetComponent<StudentBehaviour>().player)
-            {
-                lObject.GetComponent<StudentBehaviour>().goRight();
-                return;
-            }
-        }
+    { 
+        if (player.GetComponent<StudentBehaviour>().badGuy) player.GetComponent<StudentBehaviour>().goLeft();
+        else if (player.GetComponent<StudentBehaviour>().goodGuy) player.GetComponent<StudentBehaviour>().goRight();
+        GameObject.Find("Teacher").GetComponent<Teacher>().noteMoving = false;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
 }

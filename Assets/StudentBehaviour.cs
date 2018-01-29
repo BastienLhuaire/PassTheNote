@@ -8,127 +8,133 @@ public class StudentBehaviour : MonoBehaviour {
     public bool goodGuy;
     public bool badGuy;
     public bool nerd;
+    public bool jealous;
+
+    public bool crush;
     public bool player;
 
-    bool keyLeft;
-    bool keyRight;
-    bool keyUp;
-    bool keyDown;
+    public bool start;
+
+    public GameObject deskOnTheLeft;
+    public GameObject deskOnTheRight;
+    public GameObject deskOnTheTop;
+    public GameObject deskOnTheBottom;
 
     bool moved = false;
+    public bool fail = false;
+    public bool victory = false;
 
     float lastPressedTime = 0;
+
+    Animator animator;
 
     GameObject[] list;
     List<List<GameObject>> sortedDesks = new List<List<GameObject>>();
     List<GameObject> currentList = new List<GameObject>();
 
+    public FMOD.Studio.EventInstance soundBad;
+    public FMOD.Studio.EventInstance soundNerd;
+    public FMOD.Studio.EventInstance soundJealous;
+    public FMOD.Studio.EventInstance soundGood;
+    public FMOD.Studio.EventInstance soundPaperPass;
+
     // Use this for initialization
     void Start () {
         list = GameObject.FindGameObjectsWithTag("Desk");
+        animator = GetComponent<Animator>();
 
-        initDesks();
-
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
-
-        keyLeft = Input.GetKeyDown(KeyCode.LeftArrow);
-        keyRight = Input.GetKeyDown(KeyCode.RightArrow);
-        keyUp = Input.GetKeyDown(KeyCode.UpArrow);
-        keyDown = Input.GetKeyDown(KeyCode.DownArrow);
-
-
-        //if (Input.GetKeyUp(KeyCode.DownArrow)) keyPressed = false; ;
-
-        //if (keyDown && player) goDown();
-        //if (keyRight && player) goRight();
-        //if (keyUp && player) goUp();
-        //if (keyLeft && player) goLeft();
-
-        if (player) this.GetComponent<SpriteRenderer>().color = Color.red;
+        soundBad = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Student/sfx_Bad");
+        soundNerd = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Student/sfx_Nerd");
+        soundJealous = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Student/sfx_Jealous");
+        soundGood = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Student/sfx_Good");
+        soundPaperPass = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/PassPeper");
     }
 
-    void initDesks()
-    {
-        for (int i = 0; i < 5; i++) sortedDesks.Add(new List<GameObject>());
-        
+    // Update is called once per framea
+    void Update () {
 
-        foreach (GameObject lObject in list)
-        {
-            if (lObject.transform.position.x == -4) sortedDesks[0].Add(lObject);
-            else if (lObject.transform.position.x == -2) sortedDesks[1].Add(lObject);
-            else if (lObject.transform.position.x == 0) sortedDesks[2].Add(lObject);
-            else if (lObject.transform.position.x == 2) sortedDesks[3].Add(lObject);
-            else if (lObject.transform.position.x == 4) sortedDesks[4].Add(lObject);
+        if (gameObject.tag == "Player" && crush) victory = true;
+        if (gameObject.tag == "Player" && nerd) fail = true;
+
+        //random action on iddle guys
+        if (gameObject.tag != "Player" && nerd || badGuy || jealous) {
+            if(Random.Range(-10.0f, 1000.0f) < -9.4) {
+                animator.SetTrigger("randomAction");
+            }
         }
 
-        for (int i = 0; i < sortedDesks.Count; i++)
-        {
-            sortedDesks[i] = sortedDesks[i].OrderBy(t => t.transform.position.y).ToList();
-            if (sortedDesks[i].Contains(this.gameObject)) currentList = sortedDesks[i];
-        }
-        
+        if (gameObject.tag == "Player" && jealous) Invoke("doActionJealous", 1);
+        if (gameObject.tag == "Player") animator.SetBool("isPlayer", true);
+        else animator.SetBool("isPlayer", false);
     }
 
     public void goDown()
     {
-        if (currentList[currentList.IndexOf(this.gameObject) - 1] != null)
+        if (deskOnTheBottom != null && !fail)
         {
-            currentList[currentList.IndexOf(this.gameObject) - 1].gameObject.GetComponent<StudentBehaviour>().player = true;
-            this.player = false;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
-            GameObject.Find("Teacher").GetComponent<Teacher>().soundLevel += 1;
+            gameObject.tag = "Desk";
+            deskOnTheBottom.gameObject.tag = "Player";
+            GameObject.Find("Teacher").GetComponent<Teacher>().soundLevel++;
+            if (deskOnTheBottom.GetComponent<StudentBehaviour>().nerd) soundNerd.start();
+            if (deskOnTheBottom.GetComponent<StudentBehaviour>().badGuy) soundBad.start();
+            if (deskOnTheBottom.GetComponent<StudentBehaviour>().goodGuy) soundGood.start();
+            if (deskOnTheBottom.GetComponent<StudentBehaviour>().jealous) soundJealous.start();
+            soundPaperPass.start();
         }
     }
 
     public void goLeft()
     {
-        if (sortedDesks[sortedDesks.IndexOf(currentList) - 1] != null)
+        if (deskOnTheLeft != null && !fail)
         {
-            sortedDesks[sortedDesks.IndexOf(currentList) - 1][currentList.IndexOf(this.gameObject)].gameObject.GetComponent<StudentBehaviour>().player = true;
-            this.player = false;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
-            GameObject.Find("Teacher").GetComponent<Teacher>().soundLevel += 1;
+            gameObject.tag = "Desk";
+            deskOnTheLeft.gameObject.tag = "Player";
+            GameObject.Find("Teacher").GetComponent<Teacher>().soundLevel++;
+            if (deskOnTheLeft.GetComponent<StudentBehaviour>().nerd) soundNerd.start();
+            if (deskOnTheLeft.GetComponent<StudentBehaviour>().badGuy) soundBad.start();
+            if (deskOnTheLeft.GetComponent<StudentBehaviour>().goodGuy) soundGood.start();
+            if (deskOnTheLeft.GetComponent<StudentBehaviour>().jealous) soundJealous.start();
+            soundPaperPass.start();
         }
     }
 
     public void goRight()
     {
-        if (sortedDesks[sortedDesks.IndexOf(currentList) + 1] != null)
+        if (deskOnTheRight != null && !fail)
         {
-            sortedDesks[sortedDesks.IndexOf(currentList) + 1][currentList.IndexOf(this.gameObject)].gameObject.GetComponent<StudentBehaviour>().player = true;
-            this.player = false;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
-            GameObject.Find("Teacher").GetComponent<Teacher>().soundLevel += 1;
+            gameObject.tag = "Desk";
+            deskOnTheRight.gameObject.tag = "Player";
+            GameObject.Find("Teacher").GetComponent<Teacher>().soundLevel++;
+            if (deskOnTheRight.GetComponent<StudentBehaviour>().nerd) soundNerd.start();
+            if (deskOnTheRight.GetComponent<StudentBehaviour>().badGuy) soundBad.start();
+            if (deskOnTheRight.GetComponent<StudentBehaviour>().goodGuy) soundGood.start();
+            if (deskOnTheRight.GetComponent<StudentBehaviour>().jealous) soundJealous.start();
+            soundPaperPass.start();
         }
     }
 
     public void goUp()
     {
-        if (currentList[currentList.IndexOf(this.gameObject) + 1] != null)
+        if (deskOnTheTop != null && !fail)
         {
-            currentList[currentList.IndexOf(this.gameObject) + 1].gameObject.GetComponent<StudentBehaviour>().player = true;
-            this.player = false;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
-            GameObject.Find("Teacher").GetComponent<Teacher>().soundLevel += 1;
+            gameObject.tag = "Desk";
+            deskOnTheTop.gameObject.tag = "Player";
+            GameObject.Find("Teacher").GetComponent<Teacher>().soundLevel++;
+            if (deskOnTheTop.GetComponent<StudentBehaviour>().nerd) soundNerd.start();
+            if (deskOnTheTop.GetComponent<StudentBehaviour>().badGuy) soundBad.start();
+            if (deskOnTheTop.GetComponent<StudentBehaviour>().goodGuy) soundGood.start();
+            if (deskOnTheTop.GetComponent<StudentBehaviour>().jealous) soundJealous.start();
+            soundPaperPass.start();
         }
     }
 
-    void doActionGoodguy()
-    {
-
-    }
-
-    void doActionBadGuy()
-    {
-
-    }
-
-    void doActionNerd()
-    {
-
+    void doActionJealous() {
+        GameObject[] lList = GameObject.FindGameObjectsWithTag("Desk");
+        foreach (GameObject lObject in lList) {
+            if (lObject.gameObject.GetComponent<StudentBehaviour>().start) {
+                gameObject.tag = "Desk";
+                lObject.gameObject.tag = "Player";
+            }
+        }
     }
 }

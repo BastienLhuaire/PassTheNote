@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: 493ddeed64e6f6946bb1fa54442a6328
+timeCreated: 1517094439
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Bad_Spritesheet_iddle
+    21300002: Bad_Spritesheet_left
+    21300004: Bad_Spritesheet_back
+    21300006: Bad_Spritesheet_3
+    21300008: Bad_Spritesheet_4
+    21300010: Bad_Spritesheet_0
+    21300012: Bad_Spritesheet_1
+    21300014: Bad_Spritesheet_2
+    21300016: Bad_Spritesheet_5
+    21300018: Bad_Spritesheet_6
+    21300020: Bad_Spritesheet_7
+    21300022: Bad_Spritesheet_8
+    21300024: Bad_Spritesheet_9
+    21300026: Bad_Spritesheet_10
+    21300028: Bad_Spritesheet_11
+    21300030: Bad_Spritesheet_12
+    21300032: Bad_Spritesheet_13
+    21300034: Bad_Spritesheet_14
+    21300036: Bad_Spritesheet_15
+    21300038: Bad_Spritesheet_16
+    21300040: Bad_Spritesheet_17
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bad_Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4289
+        width: 2025
+        height: 1435
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bad_Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 2681
+        y: 4280
+        width: 682
+        height: 1444
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bad_Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 2222
+        width: 889
+        height: 1566
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bad_Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 2678
+        y: 2156
+        width: 697
+        height: 1703
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bad_Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 277
+        width: 1900
+        height: 1445
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

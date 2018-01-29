@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: JealousControler2
+  m_Controller: {fileID: 9100000, guid: e35ea8fc5d598844494015091a924afa, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 93f7101c2da5a32478205c28757eec6d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 48c4822c31d85714d8aae8b49200f7d5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: dcf2180f9a9b90d499e681be0e2fada3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f4feeedb1a5085b438a05c3deb03460a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2989c8e81196c9443b9c4124913e402b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7eeca7710e1fcbb478d240a7ec105497, type: 2}

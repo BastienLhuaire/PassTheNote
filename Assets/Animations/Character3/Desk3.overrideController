@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Desk3
+  m_Controller: {fileID: 9100000, guid: fa91b712798bb0241adc55409ba727d6, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 5e37a1dd3dc6a644a8d7fd7201732b46, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e27510b0e5701ed4dbcbbafe1931fc17, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2756bf7ed555f8c479c807e4b0c8f583, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9fbc8adad955e064b942c46ad9d05474, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2a634bc7d8737264281999326532f301, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2f6ebf7b6bbebf74f9232cad9f6cd6b8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6d30bca7f1a4bc943b68a3201ab6be4b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d20cba67ddd06f349b8fe2f014443cca, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9c67e2d478c2504459e24b6238e0e16d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e0da6859941318d478c15faff6e7fa9e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e11932be76d757d449742e45d4a930f6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6993f480c82f2384b8470d80cc07d658, type: 2}
